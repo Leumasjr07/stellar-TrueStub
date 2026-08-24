@@ -53,7 +53,7 @@ export const initializedReservationEscrow = async ({
     platformFee: tax,
     milestones: [
       {
-        description: 'The hotel delivers the room keys to the tenant',
+        description: 'The event delivers the room keys to the tenant',
         amount: price / 3,
         receiver: 'GBPA2LO4XHBZD54ZEGGK4GG3OYHAYBPK6FNDAHCJWNJTLTKYUL52QCQR',
       },
@@ -63,7 +63,7 @@ export const initializedReservationEscrow = async ({
         receiver: 'GBPA2LO4XHBZD54ZEGGK4GG3OYHAYBPK6FNDAHCJWNJTLTKYUL52QCQR',
       },
       {
-        description: 'The tenant returns the room keys to the hotel',
+        description: 'The tenant returns the room keys to the event',
         amount: price / 3,
         receiver: 'GBPA2LO4XHBZD54ZEGGK4GG3OYHAYBPK6FNDAHCJWNJTLTKYUL52QCQR',
       },

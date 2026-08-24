@@ -9,17 +9,17 @@ import type { ReactNode } from "react";
 
 // Define public routes that don't require authentication
 const PUBLIC_ROUTES = [
-  "/dashboard/hotel",
-  "/dashboard/hotel/payment",
-  "/dashboard/hotel/details",
-  "/dashboard/hotel/search",
-  "/dashboard/hotel/escrow",
-  "/dashboard/hotel/create-escrow",
+  "/dashboard/event",
+  "/dashboard/event/payment",
+  "/dashboard/event/details",
+  "/dashboard/event/search",
+  "/dashboard/event/escrow",
+  "/dashboard/event/create-escrow",
 ];
 
 // Routes that match patterns (for dynamic routes)
 const PUBLIC_ROUTE_PATTERNS = [
-  /^\/dashboard\/hotel\/booking\/.+\/escrow$/,
+  /^\/dashboard\/event\/booking\/.+\/escrow$/,
 ];
 
 const Layout = ({ children }: { children: ReactNode }) => {

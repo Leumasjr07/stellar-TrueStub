@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import HotelDetails from "@/components/hotels/payment/HotelDetails";
-import ReservationSummary from "@/components/hotels/payment/ReservationSummary";
+import EventDetails from "@/components/ticket-events/payment/EventDetails";
+import ReservationSummary from "@/components/ticket-events/payment/ReservationSummary";
 
-const HotelPage = () => {
-  const hotelData = {
+const EventPage = () => {
+  const eventData = {
     hotelName: "Shikara Hotel",
     description: "King bed stylish Apartment",
     details:
@@ -30,28 +30,28 @@ const HotelPage = () => {
         <div className="flex flex-col md:flex-row gap-8 max-w-7xl mx-auto">
           <div className="flex-grow">
             <div className="bg-white rounded-lg p-6 shadow-sm">
-              <HotelDetails
-                hotelName={hotelData.hotelName}
-                description={hotelData.description}
-                details={hotelData.details}
-                goodToKnow={hotelData.goodToKnow}
-                location={hotelData.location}
-                coordinates={hotelData.coordinates}
-                rating={hotelData.rating}
-                beds={hotelData.beds}
-                baths={hotelData.baths}
-                imageUrl={hotelData.imageUrl}
+              <EventDetails
+                hotelName={eventData.hotelName}
+                description={eventData.description}
+                details={eventData.details}
+                goodToKnow={eventData.goodToKnow}
+                location={eventData.location}
+                coordinates={eventData.coordinates}
+                rating={eventData.rating}
+                beds={eventData.beds}
+                baths={eventData.baths}
+                imageUrl={eventData.imageUrl}
               />
             </div>
           </div>
           <div className="w-full md:w-[400px] shrink-0">
             <ReservationSummary
-              hotelName={hotelData.hotelName}
-              description={hotelData.description}
-              price={hotelData.price}
-              tax={hotelData.tax}
-              checkIn={hotelData.checkIn}
-              checkOut={hotelData.checkOut}
+              hotelName={eventData.hotelName}
+              description={eventData.description}
+              price={eventData.price}
+              tax={eventData.tax}
+              checkIn={eventData.checkIn}
+              checkOut={eventData.checkOut}
             />
           </div>
         </div>
@@ -60,4 +60,4 @@ const HotelPage = () => {
   );
 };
 
-export default HotelPage;
+export default EventPage;

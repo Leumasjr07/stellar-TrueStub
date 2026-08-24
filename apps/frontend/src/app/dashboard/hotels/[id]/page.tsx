@@ -11,7 +11,7 @@ const STUB_HOTELS = [
     name: "Metropolitan Tower",
     address: "Avenida Central 100, San José",
     location_area: "San José Centro",
-    description: "Luxury hotel in downtown San José",
+    description: "Luxury event in downtown San José",
   },
   {
     id: "2",
@@ -29,11 +29,11 @@ const STUB_HOTELS = [
   },
 ];
 
-export default function HotelDetailPage() {
+export default function EventDetailPage() {
   const params = useParams();
-  const hotel = STUB_HOTELS.find((h) => h.id === params.id);
+  const event = STUB_HOTELS.find((h) => h.id === params.id);
 
-  if (!hotel) {
+  if (!event) {
     return (
       <div className="space-y-6">
         <Link
@@ -42,7 +42,7 @@ export default function HotelDetailPage() {
                      text-gray-400 hover:text-white transition-colors w-fit"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to Hotels
+          Back to Events
         </Link>
         <div className="flex flex-col items-center justify-center py-20 text-center">
           <Building2 className="h-12 w-12 text-gray-300 dark:text-gray-600 mb-4" />
@@ -50,7 +50,7 @@ export default function HotelDetailPage() {
             Hotel not found
           </h2>
           <p className="text-sm text-muted-foreground mt-1">
-            The hotel you&apos;re looking for doesn&apos;t exist.
+            The event you&apos;re looking for doesn&apos;t exist.
           </p>
           <Link
             href="/dashboard/hotels"
@@ -72,12 +72,12 @@ export default function HotelDetailPage() {
                    text-gray-400 hover:text-white transition-colors w-fit"
       >
         <ArrowLeft className="h-4 w-4" />
-        Back to Hotels
+        Back to Events
       </Link>
 
       <div>
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-          {hotel.name}
+          {event.name}
         </h1>
         <p className="text-sm text-muted-foreground mt-1">
           Hotel details and information
@@ -95,7 +95,7 @@ export default function HotelDetailPage() {
                 Name
               </p>
               <p className="text-sm font-semibold text-gray-900 dark:text-white mt-0.5">
-                {hotel.name}
+                {event.name}
               </p>
             </div>
           </div>
@@ -108,7 +108,7 @@ export default function HotelDetailPage() {
                 Address
               </p>
               <p className="text-sm text-gray-900 dark:text-white mt-0.5">
-                {hotel.address}
+                {event.address}
               </p>
             </div>
           </div>
@@ -121,13 +121,13 @@ export default function HotelDetailPage() {
                 Area
               </p>
               <p className="text-sm text-gray-900 dark:text-white mt-0.5">
-                {hotel.location_area}
+                {event.location_area}
               </p>
             </div>
           </div>
 
           {/* Description */}
-          {hotel.description && (
+          {event.description && (
             <div className="flex items-start gap-3">
               <div className="h-5 w-5 flex items-center justify-center shrink-0">
                 <span className="text-xs font-bold text-orange-400">i</span>
@@ -137,7 +137,7 @@ export default function HotelDetailPage() {
                   Description
                 </p>
                 <p className="text-sm text-gray-600 dark:text-gray-300 mt-0.5">
-                  {hotel.description}
+                  {event.description}
                 </p>
               </div>
             </div>

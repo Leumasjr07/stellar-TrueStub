@@ -24,7 +24,7 @@ import { useRouter } from 'next/navigation';
 
 interface EscrowTableProps {
   escrows: EscrowData[];
-  userRole: 'guest' | 'hotel' | 'admin';
+  userRole: 'guest' | 'event' | 'admin';
 }
 
 const statusBadgeVariant = {
@@ -71,7 +71,7 @@ export function EscrowTable({ escrows, userRole }: EscrowTableProps) {
   };
 
   const getActionButton = (escrow: EscrowData) => {
-    if (userRole === 'hotel' && escrow.status === 'funded' && escrow.nextMilestone === 'check_in') {
+    if (userRole === 'event' && escrow.status === 'funded' && escrow.nextMilestone === 'check_in') {
       return (
         <Button 
           variant="outline" 

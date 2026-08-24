@@ -1,4 +1,4 @@
-type UserRole = 'admin' | 'hotel' | 'guest' | null;
+type UserRole = 'admin' | 'event' | 'guest' | null;
 
 export function getUserRole(): UserRole {
   const storedAddress = localStorage.getItem('address-wallet');
@@ -17,8 +17,8 @@ export function getUserRole(): UserRole {
 
     if (address.startsWith('0xadmin') || address.includes('admin')) {
       return 'admin';
-    } else if (address.startsWith('0xhotel') || address.includes('hotel')) {
-      return 'hotel';
+    } else if (address.startsWith('0xhotel') || address.includes('event')) {
+      return 'event';
     } else {
       return 'guest';
     }

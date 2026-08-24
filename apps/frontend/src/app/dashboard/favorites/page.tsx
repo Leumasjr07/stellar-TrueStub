@@ -1,4 +1,4 @@
-import FavoriteButton from '@/components/room/mobile/FavoriteButton';
+import FavoriteButton from '@/components/ticket-listing-mobile/mobile/FavoriteButton';
 
 const STUB_FAVORITES = [
   {

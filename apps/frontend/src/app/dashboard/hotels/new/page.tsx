@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ArrowLeft, MapPin, Building2, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface HotelFormData {
+interface EventFormData {
   name: string;
   description: string;
   address: string;
@@ -15,7 +15,7 @@ interface HotelFormData {
   longitude: string;
 }
 
-const EMPTY_FORM: HotelFormData = {
+const EMPTY_FORM: EventFormData = {
   name: "",
   description: "",
   address: "",
@@ -26,10 +26,10 @@ const EMPTY_FORM: HotelFormData = {
 
 export default function NewHotelPage() {
   const router = useRouter();
-  const [form, setForm] = useState<HotelFormData>(EMPTY_FORM);
+  const [form, setForm] = useState<EventFormData>(EMPTY_FORM);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const set = (field: keyof HotelFormData, value: string) =>
+  const set = (field: keyof EventFormData, value: string) =>
     setForm((prev) => ({ ...prev, [field]: value }));
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -77,7 +77,7 @@ export default function NewHotelPage() {
                    text-gray-400 hover:text-white transition-colors w-fit"
       >
         <ArrowLeft className="h-4 w-4" />
-        Back to Hotels
+        Back to Events
       </Link>
 
       <div>
@@ -85,7 +85,7 @@ export default function NewHotelPage() {
           New Hotel
         </h1>
         <p className="text-sm text-muted-foreground mt-1">
-          Register a new hotel property on TrueStub
+          Register a new event property on TrueStub
         </p>
       </div>
 
@@ -97,14 +97,14 @@ export default function NewHotelPage() {
 
             {/* Name */}
             <div>
-              <label htmlFor="hotel-name" className={labelClass}>
+              <label htmlFor="event-name" className={labelClass}>
                 Hotel Name <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <Building2 className="absolute left-3 top-1/2 -translate-y-1/2
                                       h-4 w-4 text-orange-400" />
                 <input
-                  id="hotel-name"
+                  id="event-name"
                   type="text"
                   required
                   maxLength={20}
@@ -121,14 +121,14 @@ export default function NewHotelPage() {
 
             {/* Address */}
             <div>
-              <label htmlFor="hotel-address" className={labelClass}>
+              <label htmlFor="event-address" className={labelClass}>
                 Address <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <MapPin className="absolute left-3 top-1/2 -translate-y-1/2
                                    h-4 w-4 text-orange-400" />
                 <input
-                  id="hotel-address"
+                  id="event-address"
                   type="text"
                   required
                   maxLength={50}
@@ -142,9 +142,9 @@ export default function NewHotelPage() {
 
             {/* Location area */}
             <div>
-              <label htmlFor="hotel-location-area" className={labelClass}>Location Area</label>
+              <label htmlFor="event-location-area" className={labelClass}>Location Area</label>
               <input
-                id="hotel-location-area"
+                id="event-location-area"
                 type="text"
                 maxLength={20}
                 placeholder="e.g. San José Centro"
@@ -157,9 +157,9 @@ export default function NewHotelPage() {
             {/* Coordinates */}
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label htmlFor="hotel-latitude" className={labelClass}>Latitude</label>
+                <label htmlFor="event-latitude" className={labelClass}>Latitude</label>
                 <input
-                  id="hotel-latitude"
+                  id="event-latitude"
                   type="number"
                   step="any"
                   placeholder="9.9281"
@@ -169,9 +169,9 @@ export default function NewHotelPage() {
                 />
               </div>
               <div>
-                <label htmlFor="hotel-longitude" className={labelClass}>Longitude</label>
+                <label htmlFor="event-longitude" className={labelClass}>Longitude</label>
                 <input
-                  id="hotel-longitude"
+                  id="event-longitude"
                   type="number"
                   step="any"
                   placeholder="-84.0907"
@@ -192,17 +192,17 @@ export default function NewHotelPage() {
 
             {/* Description */}
             <div>
-              <label htmlFor="hotel-description" className={labelClass}>
+              <label htmlFor="event-description" className={labelClass}>
                 Description
               </label>
               <div className="relative">
                 <FileText className="absolute left-3 top-3
                                      h-4 w-4 text-orange-400" />
                 <textarea
-                  id="hotel-description"
+                  id="event-description"
                   maxLength={50}
                   rows={5}
-                  placeholder="Describe the hotel — features, nearby amenities, special conditions..."
+                  placeholder="Describe the event — features, nearby amenities, special conditions..."
                   value={form.description}
                   onChange={(e) => set("description", e.target.value)}
                   className={cn(inputClass, "pl-9 resize-none")}

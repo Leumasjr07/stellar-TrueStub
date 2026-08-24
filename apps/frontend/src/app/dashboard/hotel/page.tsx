@@ -1,5 +1,5 @@
-import Hotels from "@/components/hotels/pages/Hotels";
+import Events from "@/components/ticket-events/pages/Events";
 
 export default function Home() {
-  return <Hotels />;
+  return <Events />;
 }

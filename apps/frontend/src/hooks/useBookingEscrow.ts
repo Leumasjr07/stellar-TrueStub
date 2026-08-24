@@ -1,13 +1,13 @@
 /**
  * useBookingEscrow Hook
- * Custom hook for managing hotel booking escrow creation logic
+ * Custom hook for managing event booking escrow creation logic
  */
 
 import { useMemo, useCallback } from 'react';
 import { useWallet } from '@/components/auth/wallet/hooks/wallet.hook';
 import {
   BookingData,
-  HotelData,
+  EventData,
   EscrowType,
   EscrowFormData,
   EscrowMilestone,
@@ -48,7 +48,7 @@ const validateBookingData = (booking: BookingData): string[] => {
   const errors: string[] = [];
 
   if (!booking.id) errors.push('Booking ID is required');
-  if (!booking.hotelId) errors.push('Hotel ID is required');
+  if (!booking.eventId) errors.push('Hotel ID is required');
   if (!booking.roomId) errors.push('Room ID is required');
   if (!booking.totalAmount || booking.totalAmount <= 0) {
     errors.push('Valid booking amount is required');
@@ -68,28 +68,28 @@ const validateBookingData = (booking: BookingData): string[] => {
 };
 
 /**
- * Validates hotel data completeness
+ * Validates event data completeness
  */
-const validateHotelData = (hotel: HotelData): string[] => {
+const validateEventData = (event: EventData): string[] => {
   const errors: string[] = [];
 
-  if (!hotel.id) errors.push('Hotel ID is required');
-  if (!hotel.name) errors.push('Hotel name is required');
-  if (!hotel.walletAddress) {
+  if (!event.id) errors.push('Hotel ID is required');
+  if (!event.name) errors.push('Hotel name is required');
+  if (!event.walletAddress) {
     errors.push('Hotel wallet address is required');
-  } else if (!isValidStellarAddress(hotel.walletAddress)) {
-    errors.push('Invalid hotel wallet address format');
+  } else if (!isValidStellarAddress(event.walletAddress)) {
+    errors.push('Invalid event wallet address format');
   }
 
   return errors;
 };
 
 /**
- * Custom hook for hotel booking escrow management
+ * Custom hook for event booking escrow management
  */
 export function useBookingEscrow({
   bookingData,
-  hotelData,
+  eventData,
   escrowType,
 }: UseBookingEscrowOptions): UseBookingEscrowReturn {
   const { address: guestWallet } = useWallet();
@@ -105,10 +105,10 @@ export function useBookingEscrow({
     }
 
     errors.push(...validateBookingData(bookingData));
-    errors.push(...validateHotelData(hotelData));
+    errors.push(...validateEventData(eventData));
 
     return errors;
-  }, [bookingData, hotelData, guestWallet]);
+  }, [bookingData, eventData, guestWallet]);
 
   // Calculate milestone amounts based on escrow type
   const calculateMilestoneAmounts = useCallback(
@@ -182,18 +182,18 @@ export function useBookingEscrow({
     const disputeResolver = process.env.NEXT_PUBLIC_DISPUTE_RESOLVER_ADDRESS || platformWallet;
 
     return {
-      title: `Hotel Booking - ${hotelData.name}`,
+      title: `Hotel Booking - ${eventData.name}`,
       engagementId: bookingData.id,
-      description: `Secure escrow payment for hotel booking at ${hotelData.name}. Check-in: ${new Date(bookingData.checkInDate).toLocaleDateString()}, Check-out: ${new Date(bookingData.checkOutDate).toLocaleDateString()}`,
+      description: `Secure escrow payment for event booking at ${eventData.name}. Check-in: ${new Date(bookingData.checkInDate).toLocaleDateString()}, Check-out: ${new Date(bookingData.checkOutDate).toLocaleDateString()}`,
       amount: bookingData.totalAmount,
       platformFee: 2.5, // 2.5% platform fee
       roles: {
         approver: guestWallet || '', // Guest approves the release
-        serviceProvider: hotelData.walletAddress, // Hotel receives funds
+        serviceProvider: eventData.walletAddress, // Hotel receives funds
         platformAddress: platformWallet, // TrueStub platform
         releaseSigner: platformWallet, // Platform controls release
         disputeResolver: disputeResolver, // Handles disputes
-        receiver: hotelData.walletAddress, // Hotel receives payment
+        receiver: eventData.walletAddress, // Hotel receives payment
       },
       trustline: usdcTrustline,
       milestones: milestones.map((m) => ({
@@ -204,8 +204,8 @@ export function useBookingEscrow({
       metadata: {
         bookingId: bookingData.id,
         roomId: bookingData.roomId,
-        hotelId: bookingData.hotelId,
-        hotelName: hotelData.name,
+        eventId: bookingData.eventId,
+        hotelName: eventData.name,
         checkInDate: bookingData.checkInDate,
         checkOutDate: bookingData.checkOutDate,
         guestEmail: bookingData.guestEmail,
@@ -218,7 +218,7 @@ export function useBookingEscrow({
     };
   }, [
     bookingData,
-    hotelData,
+    eventData,
     guestWallet,
     usdcTrustline,
     milestones,
@@ -236,7 +236,7 @@ export function useBookingEscrow({
 }
 
 /**
- * Hook for validating escrow form data specific to hotel bookings
+ * Hook for validating escrow form data specific to event bookings
  */
 export function useEscrowValidation() {
   const validateEscrowData = useCallback((data: Partial<EscrowFormData>): { 

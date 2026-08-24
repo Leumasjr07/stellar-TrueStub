@@ -441,7 +441,7 @@ const resources = {
       hotelDetails: {
         promo: "Promocionado",
         rating: "Calificación",
-        details: "Detalles del hotel",
+        details: "Detalles del event",
         location: "Ubicación",
         goodToKnow: "Bueno saber",
         beds: "camas",

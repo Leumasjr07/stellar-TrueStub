@@ -3,7 +3,7 @@
 /**
  * EscrowCard Component
  *
- * Displays a card showing escrows filtered by role (guest/hotel/platform).
+ * Displays a card showing escrows filtered by role (guest/event/platform).
  * Shows a summary count and list of escrows for a specific role.
  *
  * @example

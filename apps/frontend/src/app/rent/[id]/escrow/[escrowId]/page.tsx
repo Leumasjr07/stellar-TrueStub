@@ -12,10 +12,10 @@ import {
   getViewForStatus,
 } from "@/components/escrow/views";
 
-export default function HotelEscrowDetailPage() {
+export default function EventEscrowDetailPage() {
   const params = useParams<{ id: string; escrowId: string }>();
   const router = useRouter();
-  const hotelId = params.id;
+  const eventId = params.id;
   const escrowId = params.escrowId;
 
   const stub = useMemo(() => getStubEscrow(escrowId), [escrowId]);
@@ -33,9 +33,9 @@ export default function HotelEscrowDetailPage() {
   useEffect(() => {
     if (isAwaitingSubscription) return;
     if (view === "pending") {
-      router.replace(`/rent/${hotelId}/escrow/create`);
+      router.replace(`/rent/${eventId}/escrow/create`);
     }
-  }, [view, hotelId, router, isAwaitingSubscription]);
+  }, [view, eventId, router, isAwaitingSubscription]);
 
   if (isAwaitingSubscription) {
     return (

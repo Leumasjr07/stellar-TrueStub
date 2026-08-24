@@ -1,6 +1,6 @@
 export interface TransactionRow {
   bookingId: string;
-  hotel: string;
+  event: string;
   checkIn: string;
   checkOut: string;
   amount: number;
@@ -22,7 +22,7 @@ export function exportTransactionsToCSV(
 
   const rows = transactions.map((t) => [
     t.bookingId,
-    t.hotel,
+    t.event,
     t.checkIn,
     t.checkOut,
     t.amount.toFixed(2),

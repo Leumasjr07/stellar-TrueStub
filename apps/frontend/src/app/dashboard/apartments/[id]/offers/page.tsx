@@ -5,13 +5,13 @@ import { useParams, useRouter } from "next/navigation";
 // import { useSuspenseQuery } from "@apollo/client";
 import { ArrowLeft, MapPin, Bed, PawPrint, Bath } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { InterestedPeopleTable } from "@/components/dashboard/apartments/InterestedPeopleTable";
+import { InterestedPeopleTable } from "@/components/dashboard/listings/InterestedPeopleTable";
 // TODO: Uncomment after running `npm run codegen` with Hasura running
 // import {
 //   GET_APARTMENT_BY_ID,
 //   GET_RENTAL_OFFERS,
 // } from "@/graphql/queries/apartment-queries";
-import type { RentalOffer } from "@/components/dashboard/apartments/InterestedPeopleTable";
+import type { RentalOffer } from "@/components/dashboard/listings/InterestedPeopleTable";
 
 export default function InterestedPeoplePage() {
   const params = useParams();
