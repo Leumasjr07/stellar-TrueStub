@@ -1,36 +1,36 @@
 "use client";
 
 import {
-  ApartmentDetail,
-  HotelHeader,
-  SuggestionsList,
-} from "@/components/hotel";
-import { getHotelById, getSuggestedHotels } from "@/lib/mockData/hotels";
+  TicketListingDetail,
+  EventHeader,
+  EventSuggestionsList,
+} from "@/components/events";
+import { getEventById, getSuggestedEvents } from "@/lib/mockData/events";
 import { useRouter } from "next/navigation";
 import { use } from "react";
 
-export default function HotelDetailPage({
+export default function EventDetailPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
   const router = useRouter();
   const resolvedParams = use(params);
-  const apartment = getHotelById(resolvedParams.id);
-  const suggestions = getSuggestedHotels(apartment.id);
+  const listing = getEventById(resolvedParams.id);
+  const suggestions = getSuggestedEvents(listing.id);
 
   return (
     <div className="min-h-screen bg-white">
-      <HotelHeader />
+      <EventHeader />
 
       <div className="mx-auto flex max-w-[1180px] flex-col lg:flex-row">
-        <SuggestionsList
-          apartments={suggestions}
+        <EventSuggestionsList
+          listings={suggestions}
           onSelect={(id) => router.push(`/rent/${id}`)}
         />
-        <ApartmentDetail
-          apartment={apartment}
-          onBook={() => router.push(`/rent/${apartment.id}/escrow/create`)}
+        <TicketListingDetail
+          listing={listing}
+          onBook={() => router.push(`/rent/${listing.id}/escrow/create`)}
         />
       </div>
     </div>

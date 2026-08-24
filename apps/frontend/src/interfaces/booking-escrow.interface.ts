@@ -1,6 +1,6 @@
 /**
  * Booking Escrow Interfaces
- * Types for hotel booking escrow integration with Trustless Work
+ * Types for event booking escrow integration with Trustless Work
  */
 
 export type EscrowType = 'single_release' | 'multi_release';
@@ -8,7 +8,7 @@ export type EscrowType = 'single_release' | 'multi_release';
 export interface BookingData {
   id: string;
   roomId: string;
-  hotelId: string;
+  eventId: string;
   totalAmount: number;
   currency: string;
   checkInDate: string;
@@ -22,7 +22,7 @@ export interface BookingData {
   };
 }
 
-export interface HotelData {
+export interface EventData {
   id: string;
   name: string;
   walletAddress: string;
@@ -69,7 +69,7 @@ export interface EscrowRoles {
 export interface EscrowMetadata {
   bookingId: string;
   roomId: string;
-  hotelId: string;
+  eventId: string;
   hotelName: string;
   checkInDate: string;
   checkOutDate: string;
@@ -110,7 +110,7 @@ export interface EscrowResponse {
 
 export interface EscrowCreationFormProps {
   bookingData: BookingData;
-  hotelData: HotelData;
+  eventData: EventData;
   roomData?: RoomData;
   escrowType: EscrowType;
   onEscrowCreated: (escrowResponse: EscrowResponse) => void;
@@ -125,7 +125,7 @@ export interface BookingEscrowWrapperProps {
 
 export interface EscrowConfirmationProps {
   booking: BookingData;
-  hotel: HotelData;
+  event: EventData;
   escrowData: EscrowResponse;
   onComplete: () => void;
   onViewDetails?: () => void;
@@ -133,7 +133,7 @@ export interface EscrowConfirmationProps {
 
 export interface UseBookingEscrowOptions {
   bookingData: BookingData;
-  hotelData: HotelData;
+  eventData: EventData;
   escrowType: EscrowType;
 }
 

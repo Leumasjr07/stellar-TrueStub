@@ -1,14 +1,14 @@
-import { MOCK_APARTMENTS, Apartment } from "@/lib/mockData/apartments";
+import { MOCK_LISTINGS, TicketListing } from "@/lib/mockData/listings";
 
-interface UseApartmentsOptions {
+interface UseTicketListingsOptions {
   limit: number;
   offset: number;
   search?: string;
 }
 
-interface UseApartmentsResult {
+interface UseTicketListingsResult {
   data: {
-    apartments: Apartment[];
+    apartments: TicketListing[];
     apartments_aggregate: { aggregate: { count: number } };
   };
   loading: boolean;
@@ -23,16 +23,16 @@ export function useApartments({
   limit,
   offset,
   search = "",
-}: UseApartmentsOptions): UseApartmentsResult {
+}: UseTicketListingsOptions): UseTicketListingsResult {
   const query = search.trim().toLowerCase();
 
   const filtered = query
-    ? MOCK_APARTMENTS.filter(
+    ? MOCK_LISTINGS.filter(
         (apartment) =>
           apartment.name.toLowerCase().includes(query) ||
           apartment.location.toLowerCase().includes(query),
       )
-    : MOCK_APARTMENTS;
+    : MOCK_LISTINGS;
 
   const paged = filtered.slice(offset, offset + limit);
 

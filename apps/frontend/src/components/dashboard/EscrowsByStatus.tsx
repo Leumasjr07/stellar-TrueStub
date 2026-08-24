@@ -4,7 +4,7 @@ import { EscrowData } from './RoleEscrowDashboard';
 
 interface EscrowsByStatusProps {
   escrows: EscrowData[];
-  userRole: 'guest' | 'hotel' | 'admin';
+  userRole: 'guest' | 'event' | 'admin';
 }
 
 export function EscrowsByStatus({ escrows, userRole }: EscrowsByStatusProps) {
@@ -44,7 +44,7 @@ export function EscrowsByStatus({ escrows, userRole }: EscrowsByStatusProps) {
       ];
     }
 
-    if (userRole === 'hotel') {
+    if (userRole === 'event') {
       return [
         { 
           title: 'Pending Check-ins',

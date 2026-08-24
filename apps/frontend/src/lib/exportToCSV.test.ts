@@ -41,7 +41,7 @@ describe("exportTransactionsToCSV", () => {
     const mockTransactions: TransactionRow[] = [
       {
         bookingId: "BOOK-101",
-        hotel: "Grand Hotel",
+        event: "Grand Hotel",
         checkIn: "2026-08-01",
         checkOut: "2026-08-05",
         amount: 250,
@@ -49,7 +49,7 @@ describe("exportTransactionsToCSV", () => {
       },
       {
         bookingId: 'BOOK-"102"',
-        hotel: 'Hotel "Lux"',
+        event: 'Hotel "Lux"',
         checkIn: "2026-08-10",
         checkOut: "2026-08-15",
         amount: 500.5,

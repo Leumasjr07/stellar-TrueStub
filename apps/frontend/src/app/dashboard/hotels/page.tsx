@@ -8,7 +8,7 @@ const STUB_HOTELS = [
     name: "Metropolitan Tower",
     address: "Avenida Central 100, San José",
     location_area: "San José Centro",
-    description: "Luxury hotel in downtown San José",
+    description: "Luxury event in downtown San José",
   },
   {
     id: "2",
@@ -26,16 +26,16 @@ const STUB_HOTELS = [
   },
 ];
 
-export default function HotelsPage() {
+export default function EventsPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-            Hotels
+            Events
           </h1>
           <p className="text-sm text-muted-foreground mt-1">
-            Manage your hotel properties
+            Manage your event properties
           </p>
         </div>
         <Link
@@ -69,30 +69,30 @@ export default function HotelsPage() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 dark:divide-slate-700">
-            {STUB_HOTELS.map((hotel) => (
+            {STUB_HOTELS.map((event) => (
               <tr
-                key={hotel.id}
+                key={event.id}
                 className="bg-white dark:bg-slate-900
                            hover:bg-gray-50 dark:hover:bg-slate-800
                            transition-colors"
               >
                 <td className="px-4 py-3 font-semibold
                                text-gray-900 dark:text-white">
-                  {hotel.name}
+                  {event.name}
                 </td>
                 <td className="px-4 py-3 text-gray-600 dark:text-gray-300">
-                  {hotel.address}
+                  {event.address}
                 </td>
                 <td className="px-4 py-3 text-gray-600 dark:text-gray-300">
-                  {hotel.location_area}
+                  {event.location_area}
                 </td>
                 <td className="px-4 py-3 text-gray-500 dark:text-gray-400
                                max-w-[200px] truncate">
-                  {hotel.description}
+                  {event.description}
                 </td>
                 <td className="px-4 py-3">
                   <Link
-                    href={`/dashboard/hotels/${hotel.id}`}
+                    href={`/dashboard/hotels/${event.id}`}
                     className="text-sm font-medium text-orange-500
                                hover:text-orange-600 transition-colors"
                   >

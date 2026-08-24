@@ -1,16 +1,16 @@
 {
   "name": "truestub",
   "version": "0.1.0",
-  "description": "TrueStub — a trustless P2P escrow platform for secondary-market ticket transfers, built on Stellar via the TrustlessWork API. Monorepo root: apps/frontend, apps/backend, and contracts/.",
+  "description": "TrueStub \u2014 a trustless P2P escrow platform for secondary-market ticket transfers, built on Stellar via the TrustlessWork API. Monorepo root: apps/frontend, apps/backend, and contracts/.",
   "private": true,
   "workspaces": [
     "apps/*"
   ],
   "scripts": {
-    "dev": "yarn workspace @truestub/frontend dev",
+    "dev": "node api.js && yarn workspace @truestub/frontend dev",
     "dev:frontend": "yarn workspace @truestub/frontend dev",
     "dev:backend": "yarn workspace @truestub/backend dev",
-    "build": "yarn build:frontend && yarn build:backend",
+    "build": "node api.js && yarn build:frontend && yarn build:backend",
     "build:frontend": "yarn workspace @truestub/frontend build",
     "build:backend": "yarn workspace @truestub/backend build",
     "lint": "yarn workspace @truestub/frontend lint",

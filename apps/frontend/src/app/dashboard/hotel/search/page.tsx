@@ -4,11 +4,11 @@ import Header from "@/components/layouts/Header";
 import React from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import DatePicker from "@/components/hotels/search/datepicker";
+import DatePicker from "@/components/ticket-events/search/datepicker";
 import Link from "next/link";
 import { Heart, MapPin } from "lucide-react";
 
-export default function HotelSearch() {
+export default function EventSearch() {
   const searchData = [
     {
       image: "/img/room1.png",
@@ -44,7 +44,7 @@ export default function HotelSearch() {
   return (
     <div className="mt-[20px]">
       <Header />
-      <h1 className="text-2xl font-bold">Find hotel to stay</h1>
+      <h1 className="text-2xl font-bold">Find event to stay</h1>
       <div className="flex justify-between items-center mt-6">
         <div className="flex justify-between items-center gap-[10px]">
           <div>

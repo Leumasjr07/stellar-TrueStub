@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { BookingEscrowWrapper } from "@/components/booking";
+import { TicketEscrowWrapper } from "@/components/ticket-purchase";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label";
 /**
  * Create Escrow Page
  * 
- * Route: /dashboard/hotel/create-escrow
+ * Route: /dashboard/event/create-escrow
  * 
  * Simple page for users to create an escrow by entering a booking ID.
  * In production, users would typically arrive here from the booking flow.
@@ -44,7 +44,7 @@ export default function CreateEscrowPage() {
               ← Back
             </Button>
           </div>
-          <BookingEscrowWrapper
+          <TicketEscrowWrapper
             bookingId={bookingId}
             onComplete={() => router.push("/dashboard")}
           />

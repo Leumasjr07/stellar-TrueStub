@@ -9,7 +9,7 @@ import { useWalletContext } from "@/components/tw-blocks/wallet-kit/WalletProvid
 
 interface EscrowStatusCardProps {
   escrow: EscrowData;
-  userRole: "guest" | "hotel" | "admin";
+  userRole: "guest" | "event" | "admin";
   onActionComplete?: () => void;
 }
 
@@ -53,7 +53,7 @@ export function EscrowStatusCard({
 
   const getActionComponent = () => {
     if (
-      userRole === "hotel" &&
+      userRole === "event" &&
       escrow.status === "funded" &&
       escrow.nextMilestone === "check_in"
     ) {

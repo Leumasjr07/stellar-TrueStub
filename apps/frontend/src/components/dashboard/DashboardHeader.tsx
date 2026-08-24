@@ -10,7 +10,7 @@ import {
 import { NotificationData } from './RoleEscrowDashboard';
 
 interface DashboardHeaderProps {
-  userRole: 'guest' | 'hotel' | 'admin';
+  userRole: 'guest' | 'event' | 'admin';
   notifications: NotificationData[];
   onMenuClick?: () => void;
   showAnalytics?: boolean;
@@ -28,7 +28,7 @@ export function DashboardHeader({
   
   const roleLabels = {
     guest: 'Guest',
-    hotel: 'Hotel Manager',
+    event: 'Hotel Manager',
     admin: 'Administrator'
   };
 

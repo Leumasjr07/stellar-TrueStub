@@ -1,21 +1,21 @@
 "use client";
 
-import type { HotelListing } from "@/@types/hotel";
-import ApartmentGrid from "@/components/hotel/ApartmentGrid";
-import BedroomTabs from "@/components/hotel/BedroomTabs";
-import FilterSidebar from "@/components/hotel/FilterSidebar";
-import { STUB_HOTELS } from "@/lib/mockData/hotels";
+import type { EventListing } from "@/@types/event";
+import TicketListingGrid from "@/components/events/TicketListingGrid";
+import SectionTabs from "@/components/events/SectionTabs";
+import ListingFilterSidebar from "@/components/events/ListingFilterSidebar";
+import { STUB_EVENTS } from "@/lib/mockData/events";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { BsSortDownAlt } from "react-icons/bs";
-import GuestBookingsSummary from "./GuestBookingsSummary";
+import GuestPurchasesSummary from "./GuestPurchasesSummary";
 
 export default function GuestDashboard() {
   const router = useRouter();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
   const [selectedBedrooms, setSelectedBedrooms] = useState<string>("all");
-  const PRICES = STUB_HOTELS.map((a) => a.price);
+  const PRICES = STUB_EVENTS.map((a) => a.price);
   const [minPrice, setMinPrice] = useState<number>(Math.min(...PRICES));
   const [maxPrice, setMaxPrice] = useState<number>(Math.max(...PRICES));
 
@@ -35,12 +35,12 @@ export default function GuestDashboard() {
     );
   };
 
-  const handleApartmentClick = (apartment: HotelListing) => {
-    router.push(`/rent/${apartment.id}`);
+  const handleApartmentClick = (listing: EventListing) => {
+    router.push(`/rent/${listing.id}`);
   };
 
   // Derived filtered state
-  const filteredApartments = STUB_HOTELS.filter((apt) => {
+  const filteredListings = STUB_EVENTS.filter((apt) => {
     // Category filter
     if (
       selectedCategories.length > 0 &&
@@ -59,8 +59,8 @@ export default function GuestDashboard() {
     if (selectedBedrooms !== "all") {
       const target = Number(selectedBedrooms);
       if (selectedBedrooms === "3") {
-        if (apt.bedrooms < 3) return false;
-      } else if (apt.bedrooms !== target) {
+        if (apt.seatCount < 3) return false;
+      } else if (apt.seatCount !== target) {
         return false;
       }
     }
@@ -74,7 +74,7 @@ export default function GuestDashboard() {
   return (
     <div className="flex flex-col lg:flex-row w-full max-w-[1400px] mx-auto bg-white rounded-[20px] overflow-hidden border border-[#e8e1da] shadow-sm mt-6">
       {/* Sidebar */}
-      <FilterSidebar
+      <ListingFilterSidebar
         selectedCategories={selectedCategories}
         selectedLocations={selectedLocations}
         minPrice={minPrice}
@@ -94,7 +94,7 @@ export default function GuestDashboard() {
           </h1>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <p className="text-[#8a8a8a] text-sm">
-              {filteredApartments.length} units available
+              {filteredListings.length} units available
             </p>
             <div className="flex items-center text-sm font-medium">
               <span className="text-[#8a8a8a] mr-2 flex items-center gap-1">
@@ -122,18 +122,18 @@ export default function GuestDashboard() {
           </div>
         </div>
 
-        <BedroomTabs
+        <SectionTabs
           selected={selectedBedrooms}
           onSelect={setSelectedBedrooms}
         />
 
-        <ApartmentGrid
-          apartments={filteredApartments}
+        <TicketListingGrid
+          listings={filteredListings}
           onApartmentClick={handleApartmentClick}
         />
 
         <div className="mt-6">
-          <GuestBookingsSummary />
+          <GuestPurchasesSummary />
         </div>
       </main>
     </div>

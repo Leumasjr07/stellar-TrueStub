@@ -3,14 +3,14 @@
 export const dynamic = 'force-dynamic';
 
 import { useState } from "react";
-import RoomPhotos from "@/components/rooms/RoomPhotos";
-import RoomDetails, { RoomDetailsInfo } from "@/components/rooms/RoomDetails";
-import AditionalRoomPhotos from "@/components/rooms/AditionalRoomPhotos";
-import { RoomBookingCard } from "@/components/rooms/RoomBookingCard";
-import { BookingConfirmation } from "@/components/rooms/BookingConfirmation";
+import EventPhotos from "@/components/ticket-listing/EventPhotos";
+import TicketListingDetails, { TicketListingDetailsInfo } from "@/components/ticket-listing/TicketListingDetails";
+import AditionalEventPhotos from "@/components/ticket-listing/AdditionalEventPhotos";
+import { TicketListingCard } from "@/components/ticket-listing/TicketListingCard";
+import { PurchaseConfirmation } from "@/components/ticket-listing/PurchaseConfirmation";
 import {
-  RoomDetailsCard,
-  RoomActionBar,
+  TicketListingDetailsCard,
+  TicketActionBar,
   MobileRoomGallery,
   MobileBookingCard,
 } from "./components";
@@ -19,7 +19,7 @@ import {
   LocationCard,
   HostCard,
   PolicyCard,
-} from "@/components/rooms/cards";
+} from "@/components/ticket-listing/cards";
 import { useRouter } from "next/navigation";
 import { NavigationHeader } from "@/components/navigation/NavigationHeader";
 import { Button } from "@/components/ui/button";
@@ -33,7 +33,7 @@ const additionalImages = [
 
 const breadcrumbs = [
   { label: "Search", href: "/dashboard/search" },
-  { label: "Shikara Hotel", isCurrentPage: true },
+  { label: "Shikara Event", isCurrentPage: true },
 ];
 
 export default function RoomPage() {
@@ -110,13 +110,13 @@ export default function RoomPage() {
   const handleViewBooking = () => {
     if (bookingData) {
       router.push(
-        `/dashboard/hotel/payment?bookingId=${bookingData.bookingId}`,
+        `/dashboard/event/payment?bookingId=${bookingData.bookingId}`,
       );
     }
   };
 
-  const detailsInfo: RoomDetailsInfo = {
-    hotelName: "Shikara Hotel",
+  const detailsInfo: TicketListingDetailsInfo = {
+    hotelName: "Shikara Event",
     address: "124 Colte Street, Downtown Center, San José",
     beds: 2,
     baths: 1,
@@ -159,12 +159,12 @@ export default function RoomPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
         {/* Main Room Photos */}
         <div className="lg:col-span-8 space-y-6 px-2 md:px-6">
-          <RoomPhotos />
+          <EventPhotos />
         </div>
 
-        {/* Additional Hotel Images */}
+        {/* Additional Event Images */}
         <div className="lg:col-span-4">
-          <AditionalRoomPhotos images={additionalImages} />
+          <AditionalEventPhotos images={additionalImages} />
         </div>
       </div>
 
@@ -173,9 +173,9 @@ export default function RoomPage() {
         {/* Main content - Room Details */}
         <div className="xl:col-span-2 space-y-8">
           {/* Room Basic Details */}
-          <RoomDetailsCard isLoading={isLoading} />
+          <TicketListingDetailsCard isLoading={isLoading} />
           {/* Action Bar */}
-          <RoomActionBar
+          <TicketActionBar
             isLiked={isLiked}
             likeCount={likeCount}
             onLike={handleLike}
@@ -197,9 +197,9 @@ export default function RoomPage() {
           <div className="hidden xl:block sticky top-24">
             <div className="lg:col-span-4">
               {bookingData ? (
-                <BookingConfirmation
+                <PurchaseConfirmation
                   bookingId={bookingData.bookingId}
-                  hotelName="Shikara Hotel"
+                  hotelName="Shikara Event"
                   checkIn={bookingData.checkIn}
                   checkOut={bookingData.checkOut}
                   guestCount={bookingData.guestCount}
@@ -207,7 +207,7 @@ export default function RoomPage() {
                   onViewBooking={handleViewBooking}
                 />
               ) : (
-                <RoomBookingCard
+                <TicketListingCard
                   roomId="room_001"
                   basePrice={2}
                   onBookingStart={handleBookingStart}

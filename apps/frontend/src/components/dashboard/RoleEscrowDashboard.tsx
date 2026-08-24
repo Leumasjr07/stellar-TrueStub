@@ -90,7 +90,7 @@ const formatNotificationTimestamp = (timestamp: string) => {
 };
 
 interface RoleEscrowDashboardProps {
-  userRole: "guest" | "hotel" | "admin";
+  userRole: "guest" | "event" | "admin";
   escrows?: EscrowData[];
   notifications?: NotificationData[];
   isLoading?: boolean;

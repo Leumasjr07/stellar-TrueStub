@@ -13,7 +13,7 @@ import {
 import { getUserRole } from "@/utils/role-utils";
 
 export function RoleEscrowDashboardPage() {
-  const [userRole, setUserRole] = useState<"guest" | "hotel" | "admin">("guest");
+  const [userRole, setUserRole] = useState<"guest" | "event" | "admin">("guest");
   const [escrows, setEscrows] = useState<EscrowData[]>([]);
   const [notifications, setNotifications] = useState<NotificationData[]>([]);
   const [isLoading, setIsLoading] = useState(true);

@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Heart, MapPin, Bed, PawPrint, Bath } from "lucide-react";
 import { cn } from "@/lib/utils";
-import  HotelHeader from "@/components/hotel/HotelHeader";
+import  EventHeader from "@/components/events/EventHeader";
 
 // TODO: replace with Apollo query → public.apartments (Hasura)
 // Reference: dApp/apps/frontend/src/app/dashboard/guest/page.tsx
@@ -66,7 +66,7 @@ export default function GuestSuggestionsPage() {
     <div className="min-h-screen bg-white dark:bg-slate-900
                     text-gray-900 dark:text-white">
       {/* Standalone header */}
-      <HotelHeader showHostSwitch />
+      <EventHeader showHostSwitch />
 
       <div className="mx-auto max-w-[1280px] px-4 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr_220px] gap-6">

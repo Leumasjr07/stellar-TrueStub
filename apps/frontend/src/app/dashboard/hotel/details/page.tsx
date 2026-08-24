@@ -1,12 +1,12 @@
 "use client";
 import Header from "@/components/layouts/Header";
 import { SideBar } from "@/components/layouts/SideBar";
-import Gallery from "@/components/hotels/details/Gallery";
-import Information from "@/components/hotels/details/Information";
-import Details from "@/components/hotels/details/Details";
-import HotelMap from "@/components/hotels/payment/Map";
+import Gallery from "@/components/ticket-events/details/Gallery";
+import Information from "@/components/ticket-events/details/Information";
+import Details from "@/components/ticket-events/details/Details";
+import EventMap from "@/components/ticket-events/payment/Map";
 
-export default function HotelPage() {
+export default function EventPage() {
   const images = [
     "/img/room1.png",
     "/img/room2.png",
@@ -47,7 +47,7 @@ export default function HotelPage() {
                 />
               </div>
               <div className="w-full md:w-1/2 min-h-[250px]">
-                <HotelMap coordinates={coordinates} hotelName="Shikara Hotel" />
+                <EventMap coordinates={coordinates} eventName="Shikara Hotel" />
               </div>
             </div>
             <div className="hidden md:block md:w-1/4 lg:w-1/4"></div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Bell, Building2, Heart, Home, Hotel, LayoutDashboard, PlusCircle, PlusSquare, Shield, Users } from "lucide-react";
+import { Bell, Building2, Heart, Home, LayoutDashboard, PlusCircle, PlusSquare, Shield, Users } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LogoutButton } from "@/components/auth/LogoutButton";
@@ -95,7 +95,7 @@ export function SideBar({
             Rent
           </span>
         </Link>
-        {/* Hotels list */}
+        {/* Events list */}
         <Link
           href="/dashboard/hotels"
           onClick={onClose}
@@ -105,13 +105,13 @@ export function SideBar({
               "bg-accent font-medium dark:bg-gray-800 dark:text-white",
           )}
         >
-          <Hotel className="w-6 h-6 shrink-0 dark:text-gray-400" />
-          <span className="md:hidden lg:block">Hotels</span>
+          <Building2 className="w-6 h-6 shrink-0 dark:text-gray-400" />
+          <span className="md:hidden lg:block">Events</span>
           <span className="hidden md:group-hover:block lg:group-hover:hidden absolute left-14 bg-popover text-popover-foreground px-2 py-1 rounded shadow-md text-xs z-50 whitespace-nowrap">
-            Hotels
+            Events
           </span>
         </Link>
-        {/* New Hotel */}
+        {/* New Event */}
         <Link
           href="/dashboard/hotels/new"
           onClick={onClose}
@@ -122,9 +122,9 @@ export function SideBar({
           )}
         >
           <PlusCircle className="w-6 h-6 shrink-0 dark:text-gray-400" />
-          <span className="md:hidden lg:block">New Hotel</span>
+          <span className="md:hidden lg:block">New Event</span>
           <span className="hidden md:group-hover:block lg:group-hover:hidden absolute left-14 bg-popover text-popover-foreground px-2 py-1 rounded shadow-md text-xs z-50 whitespace-nowrap">
-            New Hotel
+            New Event
           </span>
         </Link>
         <Link

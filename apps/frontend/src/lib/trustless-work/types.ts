@@ -64,12 +64,12 @@ import type { SingleReleaseEscrow, MultiReleaseEscrow, SingleReleaseMilestone, M
  * DOMAIN-SPECIFIC TYPES FOR TRUESTUB APPLICATION (Hotel Booking)
  * =============================================================================
  * These interfaces provide a simplified, application-specific view of escrow data
- * tailored for hotel booking scenarios. Use these for UI components and business logic.
+ * tailored for event booking scenarios. Use these for UI components and business logic.
  */
 
 /**
  * Escrow Data Interface (Application Domain)
- * Simplified escrow structure for hotel booking use cases
+ * Simplified escrow structure for event booking use cases
  */
 export interface EscrowData {
   /**
@@ -115,7 +115,7 @@ export interface EscrowData {
 
 /**
  * Milestone Interface (Application Domain)
- * Simplified milestone structure for hotel booking scenarios
+ * Simplified milestone structure for event booking scenarios
  */
 export interface Milestone {
   /**

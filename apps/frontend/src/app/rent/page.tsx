@@ -1,8 +1,8 @@
 "use client";
 
-import type { HotelListing } from "@/@types/hotel";
-import { ApartmentGrid, BedroomTabs, FilterSidebar, HotelHeader } from "@/components/hotel";
-import { STUB_HOTELS } from "@/lib/mockData/hotels";
+import type { EventListing } from "@/@types/event";
+import { TicketListingGrid, SectionTabs, ListingFilterSidebar, EventHeader } from "@/components/events";
+import { STUB_EVENTS } from "@/lib/mockData/events";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { BsSortDownAlt } from "react-icons/bs";
@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 
 type SortOption = "relevance" | "price-low" | "price-high";
 
-export default function HotelListingPage() {
+export default function EventListingPage() {
   const router = useRouter();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([
     "Family",
@@ -27,32 +27,32 @@ export default function HotelListingPage() {
   const [minPrice, setMinPrice] = useState<number>(3200);
   const [maxPrice, setMaxPrice] = useState<number>(206000);
 
-  const filteredApartments = useMemo(() => {
-    const apartments = STUB_HOTELS.filter((apartment) => {
+  const filteredListings = useMemo(() => {
+    const listings = STUB_EVENTS.filter((listing) => {
       const matchesCategory =
         selectedCategories.length === 0 ||
-        selectedCategories.includes(apartment.category);
+        selectedCategories.includes(listing.category);
       const matchesLocation =
         selectedLocations.length === 0 ||
-        selectedLocations.includes(apartment.location);
+        selectedLocations.includes(listing.location);
       const matchesBedroom =
         selectedBedrooms === "all" ||
-        apartment.bedrooms === Number(selectedBedrooms);
+        listing.seatCount === Number(selectedBedrooms);
       const matchesPrice =
-        apartment.price >= minPrice && apartment.price <= maxPrice;
+        listing.price >= minPrice && listing.price <= maxPrice;
 
       return matchesCategory && matchesLocation && matchesBedroom && matchesPrice;
     });
 
     if (sortOption === "price-low") {
-      return [...apartments].sort((left, right) => left.price - right.price);
+      return [...listings].sort((left, right) => left.price - right.price);
     }
 
     if (sortOption === "price-high") {
-      return [...apartments].sort((left, right) => right.price - left.price);
+      return [...listings].sort((left, right) => right.price - left.price);
     }
 
-    return [...apartments].sort(
+    return [...listings].sort(
       (left, right) => Number(right.promoted) - Number(left.promoted),
     );
   }, [maxPrice, minPrice, selectedBedrooms, selectedCategories, selectedLocations, sortOption]);
@@ -60,16 +60,16 @@ export default function HotelListingPage() {
   const toggleValue = (values: string[], value: string) =>
     values.includes(value) ? values.filter((item) => item !== value) : [...values, value];
 
-  const handleApartmentClick = (apartment: HotelListing) => {
-    router.push(`/rent/${apartment.id}`);
+  const handleApartmentClick = (listing: EventListing) => {
+    router.push(`/rent/${listing.id}`);
   };
 
   return (
     <div className="min-h-screen bg-white dark:bg-slate-900 text-gray-900 dark:text-white">
-      <HotelHeader />
+      <EventHeader />
 
       <div className="mx-auto flex max-w-[1180px] flex-col lg:flex-row">
-        <FilterSidebar
+        <ListingFilterSidebar
           selectedCategories={selectedCategories}
           selectedLocations={selectedLocations}
           minPrice={minPrice}
@@ -195,8 +195,8 @@ export default function HotelListingPage() {
                     {[
                       { label: "All", value: "all" },
                       { label: "1 bedroom", value: "1" },
-                      { label: "2 bedrooms", value: "2" },
-                      { label: "3 bedrooms", value: "3" },
+                      { label: "2 seatCount", value: "2" },
+                      { label: "3 seatCount", value: "3" },
                     ].map((bd) => (
                       <button
                         key={bd.value}
@@ -273,11 +273,11 @@ export default function HotelListingPage() {
           </div>
 
           <div className="mt-6">
-            <BedroomTabs selected={selectedBedrooms} onSelect={setSelectedBedrooms} />
+            <SectionTabs selected={selectedBedrooms} onSelect={setSelectedBedrooms} />
           </div>
 
           <div className="mt-8">
-            <ApartmentGrid apartments={filteredApartments} onApartmentClick={handleApartmentClick} />
+            <TicketListingGrid listings={filteredListings} onApartmentClick={handleApartmentClick} />
           </div>
         </main>
       </div>
